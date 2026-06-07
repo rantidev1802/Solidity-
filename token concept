@@ -1,0 +1,55 @@
+contract Apna_token {
+
+    string public name = "SNOW";
+    string public symbol = "$T";
+    uint public total_supply;
+
+    mapping(address => uint) public balanceOf;
+    mapping(address => mapping(address => uint)) public allowance;
+
+    address public owner;
+
+    event Transfer(address indexed from, address indexed to, uint amount);
+    event Approval(address indexed owner, address indexed spender, uint amount);
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    function mint(address to, uint amount) public {
+        require(msg.sender == owner, "Only owner can mint");
+
+        total_supply += amount;
+        balanceOf[to] += amount;
+
+        emit Transfer(address(0), to, amount);
+    }
+
+    function approve(address spender, uint amount) public returns (bool) {
+        allowance[msg.sender][spender] = amount;
+
+        emit Approval(msg.sender, spender, amount);
+        return true;
+    }
+
+    function transferFrom(address from, address to, uint amount) public returns (bool success ) {
+        require(balanceOf[from] >= amount, "Balance too low");
+        require(allowance[from][msg.sender] >= amount, "Allowance too low");
+
+        allowance[from][msg.sender] -= amount;
+        balanceOf[from] -= amount;
+        balanceOf[to] += amount;
+
+        emit Transfer(from, to, amount);
+        return true;
+    }
+
+    function burn(uint amount) public {
+        require(balanceOf[msg.sender] >= amount, "Balance too low to burn");
+
+        balanceOf[msg.sender] -= amount;
+        total_supply -= amount;
+
+        emit Transfer(msg.sender, address(0), amount);
+    }
+}
