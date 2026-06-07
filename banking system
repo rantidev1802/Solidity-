@@ -1,0 +1,29 @@
+/*
+contract store_num{
+    mapping(address => uint) public numbers;
+
+    function setNumber(uint num) public{
+        numbers[msg.sender]=num;
+    }
+    function getNumber() public view returns(uint){
+        return numbers[msg.sender];
+    }
+}*/
+
+contract bank_system{
+    mapping(address => uint)public balance;
+    function deposit() public payable {
+        require(msg.value>0,"Invalid Transaction");
+        balance[msg.sender]+=msg.value;
+    }
+    function withdraw(uint amount) public {
+         require(amount>0,"Invalid transaction");
+        require(balance[msg.sender]>=amount,"insuffiecient value");
+        balance[msg.sender]-=amount;
+        (bool success, ) = payable(msg.sender).call{value: amount}("");
+        require(success, "Transfer failed");
+    }
+    function getBalance() public view returns (uint) {
+    return balance[msg.sender];
+}
+}
