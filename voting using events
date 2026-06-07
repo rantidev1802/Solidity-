@@ -1,0 +1,79 @@
+contract Voting {
+
+    struct Candidate {
+        string name;
+        uint voteCount;
+    }
+
+    address public owner;
+    uint public startTime;
+    uint public endTime;
+
+    Candidate[] public candidates;
+    mapping(address => bool) public hasVoted;
+
+    event CandidateAdded(uint indexed index, string name);
+    event Voted(address indexed voter, uint indexed candidateIndex);
+    event Winner(string name, uint votes);
+    event VotingReset();
+
+    constructor(uint duration){
+        owner = msg.sender;
+        startTime = block.timestamp;
+        endTime = startTime + duration;
+    }
+
+    modifier onlyOwner(){
+        require(msg.sender == owner, "YOU are not owner");
+        _;
+    }
+
+    function addCandidate(string memory _name) public onlyOwner {
+        candidates.push(Candidate(_name, 0));
+        emit CandidateAdded(candidates.length - 1, _name);
+    }
+
+    function vote(uint _index) public {
+
+        require(block.timestamp >= startTime, "Voting not started");
+        require(block.timestamp <= endTime, "Voting ended");
+
+        require(!hasVoted[msg.sender], "Already voted");
+        require(_index < candidates.length, "Invalid candidate");
+
+        candidates[_index].voteCount++;
+        hasVoted[msg.sender] = true;
+
+        emit Voted(msg.sender, _index);
+    }
+
+    function getWinner() public view returns(string memory,uint){
+        require(candidates.length > 0, "No candidates");
+
+        uint maxVotes = 0;
+        uint winnerIndex = 0;
+
+        for(uint i = 0; i < candidates.length; i++){
+            if(candidates[i].voteCount > maxVotes){
+                maxVotes = candidates[i].voteCount;
+                winnerIndex = i;
+            }
+        }
+
+        return (candidates[winnerIndex].name, maxVotes);
+    }
+
+    function declareWinner() public {
+        (string memory name, uint votes) = getWinner();
+        emit Winner(name, votes);
+    }
+
+    function resetVoting() public onlyOwner {
+        delete candidates;
+        emit VotingReset();
+    }
+
+    function isVotingActive() public view returns (bool) {
+        return block.timestamp >= startTime && block.timestamp <= endTime;
+    }
+}
