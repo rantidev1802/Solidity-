@@ -1,0 +1,32 @@
+contract ToDo{
+    struct Task {
+        string content;
+        bool status;
+    }
+    Task[] public tasks;
+    function addTask(string memory newcontent)public{
+        tasks.push(Task(newcontent,false));
+    }
+
+    function updateTask(uint _index)public{
+        require(_index < tasks.length , "Invalid index");
+        Task storage temp= tasks[_index];
+        temp.status=!temp.status;
+    }
+
+    function Taskcount() public view returns (uint){
+        return tasks.length;
+    }
+    function deleteTask(uint  _index) public{
+        require(_index < tasks.length , "invalid index");
+        delete tasks[_index];
+    }
+    function editTask(uint _index , string memory newcontent)public{
+        require (_index < tasks.length,"Invalid index");
+        Task storage tempcontent = tasks[_index];
+        tempcontent.content=newcontent;
+    }
+    function getAllTasks() public view returns (Task[] memory) {
+    return tasks;
+}
+}
