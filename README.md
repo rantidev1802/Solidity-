@@ -14,7 +14,7 @@ Core Solidity concepts that every smart contract developer should understand bef
 | Topic                                                            | Description                                                                                                                                             |
 | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 📄 [Function Modifiers](https://github.com/rantidev1802/solidity-/tree/8cf3aec5a4ff3b784f12af550586b7f8009a846e/Function%20Modifiers) | Learn how modifiers work, the `_` placeholder, execution flow, inheritance, arguments, and real-world use cases such as `onlyOwner` and `nonReentrant`. |
-[Language Basics](../Basics/Transient storage.md)
+[Language Basics](https://github.com/rantidev1802/solidity-/tree/14695ca926f6af15e982314aecf9c842f29bd7e2/Basics) | Learn the solidity language basics.
 ---
 
 ## 🚀 Projects
