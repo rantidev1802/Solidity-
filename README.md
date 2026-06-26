@@ -13,7 +13,7 @@ Core Solidity concepts that every smart contract developer should understand bef
 
 | Topic                                                            | Description                                                                                                                                             |
 | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 📄 [Function Modifiers](./Function%20Modifiers/README.md) | Learn how modifiers work, the `_` placeholder, execution flow, inheritance, arguments, and real-world use cases such as `onlyOwner` and `nonReentrant`. |
+| 📄 [Function Modifiers](./Function%20Modifiers) | Learn how modifiers work, the `_` placeholder, execution flow, inheritance, arguments, and real-world use cases such as `onlyOwner` and `nonReentrant`. |
 
 ---
 
