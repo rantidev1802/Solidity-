@@ -37,21 +37,6 @@ Hands-on implementations to apply Solidity concepts and protocol design.
 
 ---
 
-# 📂 Repository Structure
-
-```text
-Solidity/
-│
-├── README.md
-│
-├── Basics/
-│   └── Function Modifiers/
-│       ├── README.md
-│       └── ModifierExample.sol
-│
-└── Projects/
-```
-
 ---
 
 ## ⭐ Future Topics
