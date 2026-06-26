@@ -454,6 +454,13 @@ validAddress(user)
 - Security libraries like OpenZeppelin use modifiers extensively for access control, pausing, and reentrancy protection.
 
 ---
+# 📝 My Notes
+
+- Modifiers are similar to middleware in web frameworks.
+- `_` is not a keyword; it's a placeholder where the compiler inserts the function body.
+- A modifier can execute code before and after the function.
+- `nonReentrant` works because it locks before execution and unlocks afterward.
+- Most production protocols use modifiers for authorization rather than repeating `require()` checks.
 
 # 📖 References
 
