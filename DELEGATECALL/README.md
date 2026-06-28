@@ -140,6 +140,20 @@ As a result, the proxy's storage is updated.
 
 ---
 
+## MY NOTES 
+
+- ABI : Defines exactly how those bytes are constructed.
+- Encoded bytes does not contain any information about what they represent.
+- Function Identifier : Keccak256 hash of function signature ->  Extract first 4 bytes -> Becomes selector.
+- Low Level Calls - When the function is not known at Compile time.
+- CallData : Encoded argument into one byte array called call data.
+- Proxies : Fake Contract that users interact with.
+- Proxies use DelegateCall().
+- What does it do -> implementation.delegatecall(msg.data)
+- implementation : Go to logic contract.
+- delegatecall : Execute code but use my storage.
+- msg.data : Exact bytes user send me.
+
 ## Key Takeaways
 
 - `call()` → Uses another contract's **code and storage**.
