@@ -5,4 +5,4 @@ The Digital Land Registry models a simplified government-backed land registratio
 
 By combining standardized NFT ownership with application-specific land records, the project demonstrates how real-world assets can be uniquely identified, securely owned, and transparently transferred on-chain.
 
-Implementation: The complete implementation, contract architecture, and business logic are available in [Digital Land Registry](..//EIP//ERC721//Land_Registry)
+Implementation: The complete implementation, contract architecture, and business logic are available in [Digital Land Registry](https://github.com/rantidev1802/Solidity-/tree/10950979d1f1be81b6f1fb891f4584c1bff93215/EIPs/ERC721/Land_Registry)
